@@ -1,0 +1,16 @@
+body {
+    background-image: url("../images/background_image.jpeg");
+    background-size: cover;
+}
+
+.player-image {
+    border:5px solid white;
+}
+
+.caption {
+    background-color: white;
+}
+
+.player-box {
+    border: 2px solid green;
+}

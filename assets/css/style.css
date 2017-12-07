@@ -14,3 +14,25 @@ body {
 .player-box {
     border: 2px solid green;
 }
+
+.enemy-box {
+    border: 2px solid black;
+}
+
+.enemy-image {
+    border:5px solid red;
+}
+
+.enemy-caption {
+    background-color:red;
+}
+
+.defender-image {
+    border: 5px solid black;
+}
+
+.defender-caption {
+    background-color: black;
+    color: white;
+}
+

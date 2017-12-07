@@ -4,10 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Star Wars RPG</title>
+
+    <!-- CSS Reset -->
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    
 </head>
 <body>
     <div class="container">
@@ -72,24 +82,24 @@
 
         <div class="row">
             <div class="col-md-3">
-                <div class="player-box">
-                    <div class="caption text-center">Luke Skywalker</div>
-                    <img src="assets/images/luke_skywalker.jpeg" class="img-responsive float-left rounded player-image" alt="Luke Skywalker">
-                    <div class="caption text-center">hit points</div>
+                <div class="enemy-box">
+                    <div class="enemy-caption text-center">Luke Skywalker</div>
+                    <img src="assets/images/luke_skywalker.jpeg" class="img-responsive float-left rounded enemy-image" alt="Luke Skywalker">
+                    <div class="enemy-caption text-center">hit points</div>
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="player-box">
-                    <div class="caption text-center">Darth Sidious</div>
-                    <img src="assets/images/darth_sidious.jpeg" class="img-responsive float-left rounded player-image" alt="Darth Sidious">
-                    <div class="caption text-center">hit points</div>
+                <div class="enemy-box">
+                    <div class="enemy-caption text-center">Darth Sidious</div>
+                    <img src="assets/images/darth_sidious.jpeg" class="img-responsive float-left rounded enemy-image" alt="Darth Sidious">
+                    <div class="enemy-caption text-center">hit points</div>
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="player-box">
-                    <div class="caption text-center">Darth Maul</div>
-                    <img src="assets/images/darth_maul.jpeg" class="img-responsive float-left rounded player-image" alt="Darth Maul">
-                    <div class="caption text-center">hit points</div>
+                <div class="enemy-box">
+                    <div class="enemy-caption text-center">Darth Maul</div>
+                    <img src="assets/images/darth_maul.jpeg" class="img-responsive float-left rounded enemy-image" alt="Darth Maul">
+                    <div class="enemy-caption text-center">hit points</div>
                 </div>
             </div>
         </div>
@@ -116,9 +126,9 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="player-box">
-                        <div class="caption text-center">Darth Maul</div>
-                        <img src="assets/images/darth_maul.jpeg" class="img-responsive float-left rounded player-image" alt="Darth Maul">
-                        <div class="caption text-center">hit points</div>
+                        <div class="defender-caption text-center">Darth Maul</div>
+                        <img src="assets/images/darth_maul.jpeg" class="img-responsive float-left rounded defender-image" alt="Darth Maul">
+                        <div class="defender-caption text-center">hit points</div>
                     </div>
                 </div>
             </div>
@@ -134,6 +144,6 @@
     </div>
 
     
-    <script></script>
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
 </body>
 </html>

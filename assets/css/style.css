@@ -3,6 +3,7 @@ body {
     background-size: cover;
 }
 
+/* Character Options */
 .player-image {
     border:5px solid white;
 }
@@ -14,6 +15,36 @@ body {
 .player-box {
     border: 2px solid green;
 }
+
+/* Character Selected */
+.user_player-image {
+    border:5px solid white;
+}
+
+.user_caption {
+    background-color: white;
+}
+
+.user_player-box {
+    border: 2px solid green;
+}
+
+/* Enemy Options */
+
+.enemies_player-image {
+    border:5px solid red;
+}
+
+.enemies_caption {
+    background-color: red;
+}
+
+.enemies_player-box {
+    border: 2px solid black;
+}
+
+
+/* ________ */
 
 .enemy-box {
     border: 2px solid black;
@@ -35,4 +66,17 @@ body {
     background-color: black;
     color: white;
 }
+
+.character-options {
+    height:165px;
+}
+
+.character-selected {
+    height:165px;
+}
+
+.enemy-options {
+    height:165px;
+}
+
 

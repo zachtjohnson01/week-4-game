@@ -17,49 +17,41 @@ body {
 }
 
 /* Character Selected */
-.user_player-image {
+.user-image {
     border:5px solid white;
 }
 
-.user_caption {
+.user-caption {
     background-color: white;
 }
 
-.user_player-box {
+.user-box {
     border: 2px solid green;
 }
 
 /* Enemy Options */
 
-.enemies_player-image {
+.enemies-image {
     border:5px solid red;
 }
 
-.enemies_caption {
+.enemies-caption {
     background-color: red;
 }
 
-.enemies_player-box {
+.enemies-box {
+    border: 2px solid black;
+}
+
+.available-enemies-box {
     border: 2px solid black;
 }
 
 
-/* ________ */
-
-.enemy-box {
-    border: 2px solid black;
-}
-
-.enemy-image {
-    border:5px solid red;
-}
-
-.enemy-caption {
-    background-color:red;
-}
+/* Defender  */
 
 .defender-image {
-    border: 5px solid black;
+    border:5px solid black;
 }
 
 .defender-caption {
@@ -67,16 +59,26 @@ body {
     color: white;
 }
 
+.defender-box {
+    border: 2px solid green;
+}
+
+/* ----------- */
+
 .character-options {
-    height:165px;
+    height:200px;
 }
 
 .character-selected {
-    height:165px;
+    height:200px;
 }
 
 .enemy-options {
-    height:165px;
+    height:200px;
+}
+
+.enemy-selected {
+    height:200px;
 }
 
 

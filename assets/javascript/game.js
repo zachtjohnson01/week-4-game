@@ -36,6 +36,7 @@ $(document).ready(function() {
     ];
 
     var players_selected = 0;
+    var defenders_selected = 0;
 
 
     var count = characters.length;
@@ -55,7 +56,7 @@ $(document).ready(function() {
     $(".container").append("<div class='row character-options'>");
     // $(".container").append("<div class='row character-selected'>");
     // $(".container").append("<div class='row enemy-options'>");
-    $(".container").append("<div class='row enemy-selected'>");
+    // $(".container").append("<div class='row enemy-selected'>");
 
 //    function player_create() {
 //        console.log("test");
@@ -83,33 +84,46 @@ $(document).ready(function() {
     };
 
     $(".player-box").on("click", function() {
+        console.log("test fire 1");
         $(this).addClass("user-box");
         $(this).parent().addClass("user-col");
         var user = $(this).clone();
-        user.removeClass("player-box").addClass("user_player-box");
-        user.find(".caption").removeClass(".caption").addClass("user_caption")
+        user.removeClass("player-box");
+        user.find(".caption").removeClass("caption").addClass("user-caption")
         $(".container").append("<div class='row character-selected'>");
         $(".character-selected").append(`<div class='${column} user-col'>`);
         $(".user-col").append(user);
         console.log(user.contents())
-        players_selected+=1;
+        players_selected++;
         var enemies = $(".character-options").clone();
         enemies.removeClass("character-options").addClass("enemy-options");
         enemies.children(".user-col").remove();
         $(".container").append(enemies);
         var char_col = $(".character-options").children();
         char_col.remove();
-        enemies.find(".caption").removeClass(".caption").addClass("enemies_caption");
-        enemies.find(".player-image").removeClass(".player-image").addClass("enemies_player-image");
-        enemies.find(".player-box").removeClass(".player-box").addClass("enemies_player-box");
-
-
-        if (players_selected > 0) {
-            console.log("player chosen");
-        } else {
-          console.log("choose player");
-        }
-        // console.log(this);
+        enemies.find(".caption").removeClass("caption").addClass("enemies-caption");
+        enemies.find(".player-image").removeClass("player-image").addClass("enemies-image");
+        enemies.find(".player-box").removeClass("player-box").addClass("enemies-box");
 
     });
+    $("body").on("click",".enemies-box", function() {
+        console.log("test fire");
+        $(this).addClass("defender-box");
+        $(this).parent().addClass("defender-col");
+        var defender = $(this).clone();
+        console.log(defender);
+        defender.removeClass("enemies-box").addClass("defender-box");
+        defender.find(".enemies-caption").removeClass(".enemies-caption").addClass("defender-caption");
+        defender.find(".enemies-image").removeClass(".enemies-image").addClass("defender-image");
+        defender.find(".enemies-box").removeClass(".enemies-box").addClass("defender-box");
+        $(".container").append(`<div class='row enemy-selected'>`);
+        $(".enemy-selected").append(`<div class='${column} defender-col'>`);
+        $("div.enemy-selected div.defender-col").append(defender);
+        $("div.enemy-options div.defender-col").remove();
+        $("div.enemy-options div.col-md-3 div.enemies-box").removeClass("enemies-box").addClass("available-enemies-box");
+        defenders_selected++;
+        
+    });
+
+
 })

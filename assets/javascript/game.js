@@ -1,6 +1,6 @@
 $(document).ready(function() {
     function restart() {
-        
+    
 
 
         // VARIABLES
@@ -55,11 +55,19 @@ $(document).ready(function() {
         var defenderkey
         var b = -1;
         var enemynum = 3;
-        // console.log(characters[0].name);
+        var saberSounds = ["assets/sounds/sabersounds/clashclash.mp3",
+        "assets/sounds/sabersounds/2clas2.wav", 
+        "assets/sounds/sabersounds/swing01.wav3", 
+        "assets/sounds/sabersounds/clash01.wav"
+        ]
+
+
 
 
         // FUNCTIONS
         // ======================================================
+
+
 
         $("body").append("<div class='container'>");
         $(".container").append(`<div class='row'> 
@@ -71,25 +79,6 @@ $(document).ready(function() {
         $(".choose-character-title").append("<div class='col-md-12'>")
         $("div.choose-character-title div.col-md-12").html("<h3>Select a Character</h3>");
         $(".container").append("<div class='row character-options'>");
-        // $(".container").append("<div class='row character-selected'>");
-        // $(".container").append("<div class='row enemy-options'>");
-        // $(".container").append("<div class='row enemy-selected'>");
-
-    //    function player_create() {
-    //        console.log("test");
-    //         $('character-options').append('<div>');
-    //         $(`.options`).append(`<div class='player-box'>`);
-    //         $(`.player-box`).append(`<div class='caption text-center charname'>`);
-    //         $(`.charname`).append(`${characters[0].name}`);
-    //         $(`.player-box`).append(`<img src='${characters[0].photo}' class='player-image'>`);
-    //         $(`.player-image`).addClass('img-responsive float-left rounded center');
-    //         $(`.player-image`).attr('alt',`${characters[0].name}`);
-    //         $(`player-box`).append(`<div class='caption text-center hitpoints'>`);
-    //         $(`hitpoints`).append(`${characters[0].hitpoints}`);
-    //     }
-    //     player_create();
-
-
 
         for (var i = 0; i < 4; i++) {
             $(".character-options").append(`<div class=${column}>
@@ -105,7 +94,6 @@ $(document).ready(function() {
 
 
         $(".player-box").on("click", function() {
-            console.log("test fire 1");
             $(this).addClass("user-box");
             $(this).parent().addClass("user-col");
             var user = $(this).clone();
@@ -120,7 +108,6 @@ $(document).ready(function() {
             $(".container").append("<div class='row character-selected'>");
             $(".character-selected").append(`<div class='${column} user-col'>`);
             $(".user-col").append(user);
-            console.log(user.contents())
             players_selected++;
             $("div.container div.choose-character-title").remove();
             var enemies = $(".character-options").clone();
@@ -149,14 +136,15 @@ $(document).ready(function() {
             $(".attack-button").append("<div class='col-md-12'>");
             $("div.attack-button div.col-md-12").html("<button type='button' class='btn'>Attack</button>");
 
+            //Remove 'Character-Options' row
+            $(".character-options").remove();
+
         });
 
         $("body").on("click",".enemies-box", function() {
-            console.log("test fire");
             $(this).addClass("defender-box");
             $(this).parent().addClass("defender-col");
             var defender = $(this).clone();
-            console.log(defender);
             defender.removeClass("enemies-box").addClass("defender-box");
             defender.find(".enemies-caption").removeClass(".enemies-caption").addClass("defender-caption");
             defender.find(".enemies-image").removeClass(".enemies-image").addClass("defender-image");
@@ -173,17 +161,16 @@ $(document).ready(function() {
             $("div.enemy-options div.defender-col").remove();
             $("div.enemy-options div.col-md-3 div.enemies-box").removeClass("enemies-box").addClass("available-enemies-box");
             defenders_selected++;
-            console.log("enemynum: " + enemynum)
         });
 
         $("body").on("click",".attack-button", function() {
-            console.log("test button fire");
             var user = $(".user-box");
             var defender = $(".defender-box");
-            console.log(user);
-            console.log(defender);
             var userclassname = user.attr("class").split(/\s+/)[0];
             var defenderclassname = defender.attr("class").split(/\s+/)[0];
+            var sound = new Audio (saberSounds[Math.floor(Math.random()*saberSounds.length)]);
+            
+            sound.play();
 
 
 
@@ -201,9 +188,8 @@ $(document).ready(function() {
                 }
             }
 
-            // console.log(`$(div.${characters[Object.keys(characters)[userkey]]["class-name"]} div.hitpoints)`);
-            
-            if ($(`div.${characters[Object.keys(characters)[userkey]]["class-name"]} div.hitpoints`).html() <1) {
+
+            if ($(`div.${characters[Object.keys(characters)[userkey]]["class-name"]} div.hitpoints`).html() <=0) {
                 $(".user-col").append(`<h2>You have been defeated!!!</h2>`);
                 $("."+userclassname).remove();
                 $("div.your-character-title").remove();
@@ -216,8 +202,6 @@ $(document).ready(function() {
             }
 
             b+=1;
-            console.log(b);
-            console.log(characters[Object.keys(characters)[userkey]]["attack"][b]);
 
             var a = characters[Object.keys(characters)[userkey]]["attack"][b];
 
@@ -227,15 +211,12 @@ $(document).ready(function() {
             //Defender attacking user
             $(`div.${characters[Object.keys(characters)[userkey]]["class-name"]} div.hitpoints`).html(characters[Object.keys(characters)[userkey]]["hitpoints"] = characters[Object.keys(characters)[userkey]]["hitpoints"] - defenderdefend);
 
-            console.log($(`div.${characters[Object.keys(characters)[defenderkey]]["class-name"]} div.hitpoints`).html());
-
 
             //Display when user has defeated an enemy
             if ($(`div.${characters[Object.keys(characters)[defenderkey]]["class-name"]} div.hitpoints`).html() <1) {
                 $(".defender-col").append(`<h2>You have defeated ${characters[Object.keys(characters)[defenderkey]]["name"]}</h2>`);
                 $("."+defenderclassname).remove();
                 enemynum --;
-                console.log("enemynum: " + enemynum);
             };
 
             if (enemynum ===0) {
@@ -245,75 +226,50 @@ $(document).ready(function() {
                 
                 $("div.attack-button").removeClass("attack-button").addClass("reset-button");
                 $("div.reset-button div.col-md-12").html("<button type='button' class='reset-btn'>Restart</button>");
-                $("body").on("click","reset-btn",function() {
-                    $("body").children().remove();  
-                    restart();
-                });
-
-
                 $("div.container div.enemies-available-title").html("<h1>YOU WIN!!!</h1>");
+
             }
-            console.log("enemy numeroooooo: " + enemynum);
 
         });
 
+
+        //Select Another Enemy to Battle
         $("body").on("click",".available-enemies-box", function() {
             if (enemynum ===2) {
                 $("div.defender-col h2").remove();
-                console.log("test fire");
                 $(this).addClass("defender-box");
                 $(this).parent().addClass("defender-col");
                 var defender = $(this).clone();
-                console.log(defender);
                 defender.removeClass("available-enemies-box").addClass("defender-box");
                 defender.find(".enemies-caption").removeClass("enemies-caption").addClass("defender-caption");
                 defender.find(".enemies-image").removeClass("enemies-image").addClass("defender-image");
                 defender.find(".enemies-box").removeClass("enemies-box").addClass("defender-box");
         
                 //Add 'Defender' Title
-                // $(".container").append("<div class='row defender-title'>");
-                // $(".defender-title").append("<div class='col-md-12'>");
-                // $("div.defender-title div.col-md-12").html("<h3>Defender</h3>");
-        
-                // $(".container").append(`<div class='row enemy-selected'>`);
-                // $(".enemy-selected").append(`<div class='${column} defender-col'>`);
                 $("div.enemy-selected div.defender-col").append(defender);
                 $("div.enemy-options div.defender-col").remove();
                 $("div.enemy-options div.col-md-3 div.enemies-box").removeClass("enemies-box").addClass("available-enemies-box");
                 defenders_selected++;
-                // enemynum--;
-                console.log("enemynum: " + enemynum);
             } else if (enemynum ===1) {
                 $("div.defender-col h2").remove();
-                console.log("test fire");
                 $(this).addClass("defender-box");
                 $(this).parent().addClass("defender-col");
                 var defender = $(this).clone();
-                console.log(defender);
-                // defender.removeClass("available-enemies-box").addClass("defender-box");
-                // defender.find(".enemies-caption").removeClass("enemies-caption").addClass("defender-caption");
-                // defender.find(".enemies-image").removeClass("enemies-image").addClass("defender-image");
-                // defender.find(".enemies-box").removeClass("enemies-box").addClass("defender-box");
-        
+
                 //Add 'Defender' Title
-                // $(".container").append("<div class='row defender-title'>");
-                // $(".defender-title").append("<div class='col-md-12'>");
-                // $("div.defender-title div.col-md-12").html("<h3>Defender</h3>");
-        
-                // $(".container").append(`<div class='row enemy-selected'>`);
-                // $(".enemy-selected").append(`<div class='${column} defender-col'>`);
                 $("div.enemy-selected div.defender-col").append(defender);
                 $("div.enemy-options div.defender-col").remove();
-                // $("div.enemy-options div.col-md-3 div.enemies-box").removeClass("enemies-box").addClass("available-enemies-box");
                 defenders_selected++;
-                console.log("enemynum: " + enemynum);
 
             }
-            console.log("enemynum test 1: " + enemynum);
         });
 
-        //Display when user has defeated an enemy
-        // $(".enemy-options").remove();
     }; 
-    restart();  
+    //Reload the page to restart
+    $("body").on("click","div.reset-button div.col-md-12 button.reset-btn",function() {
+        location.reload();
+    });
+    restart();
+
+
 })
